@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  background: #ffffff;
+}
+
+.like {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 25px;
+  height: 25px;
+}
+
+a {
+    color: #000000;
+    font-family: Roboto;
+}
+  </style>
+</head>
+<body>
+    <a href='https://www.freepik.com/free-photos-vectors/cute'>Cute vector created by freepik - www.freepik.com</a>
+<script>
+
+    const assets = ['assets/wow.png', 'assets/sad.png', 'assets/love.png', 'assets/like.png', 'assets/laugh.png', 'assets/angry.png'];
+
+    function Like() {
+        const like = document.createElement('img');
+        like.className = 'like';
+        like.src = assets[Math.floor(Math.random()*assets.length)];
+
+        const postions = [-25, 25];
+        const randomIndex = Math.round(Math.random());
+        
+        const startPosition = Math.random()*50 - 25;
+        const move = like.animate([
+            {transform: `translate(calc(-50% + ${startPosition}px), 100%) scale(1, 1)`, opacity: '1'},
+            {transform: `translate(calc(-50% + ${startPosition}px + ${postions[randomIndex]}px), -300px) scale(0.75, 0.75)`, opacity: '0.7', offset: 0.75},
+            {transform: `translate(calc(-50% + ${startPosition}px), -400px) scale(0, 0)`, opacity: '0',}
+        ], {
+            easing: 'ease-out',
+            duration: 3000,
+            iterations: 1
+        });
+        move.onfinish = () => {
+            like.remove();
+        }
+        document.body.appendChild(like);
+    }
+
+    setInterval(() => {
+        new Like();
+    }, 750)
+    
+
+</script>
+</body>
+</html>

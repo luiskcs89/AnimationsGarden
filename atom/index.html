@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  background-color: #ffffff;
+}
+
+#nucleus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    background-color: #04579d;
+}
+
+.orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    border: 10px solid;
+    border-radius: 100%;
+    transform-style: preserve-3d;
+}
+
+.orbit::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    margin-left: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #3fb6f0;
+}
+
+#orbit-1 {
+    transform: translate(-50%, -50%) rotateY(72deg);
+    border-color: #e57265;
+}
+
+#orbit-2 {
+    transform: translate(-50%, -50%) rotateY(60deg) rotateX(52deg);
+    border-color: #F6c416;
+}
+
+#orbit-3 {
+    transform: translate(-50%, -50%) rotateY(60deg) rotateX(-52deg);
+    border-color: #409897;
+}
+
+  </style>
+</head>
+<body>
+    <div id="nucleus"></div>
+    <div id="orbit-1" class="orbit"></div>
+    <div id="orbit-2" class="orbit"></div>
+    <div id="orbit-3" class="orbit"></div>
+<script>
+
+    const orbit1 = document.getElementById('orbit-1');
+        orbit1.animate([
+        {transform: 'translate(-50%, -50%) rotateY(72deg) rotateZ(0deg)'},
+        {transform: 'translate(-50%, -50%) rotateY(72deg) rotateZ(360deg)'},
+    ], {
+        duration: 3000,
+        iterations: Infinity
+    });
+
+    const orbit2 = document.getElementById('orbit-2');
+        orbit2.animate([
+        {transform: 'translate(-50%, -50%) rotateY(60deg) rotateX(52deg) rotateZ(-120deg)'},
+        {transform: 'translate(-50%, -50%) rotateY(60deg) rotateX(52deg) rotateZ(240deg)'},
+    ], {
+        duration: 3000,
+        iterations: Infinity
+    });
+
+    const orbit3 = document.getElementById('orbit-3');
+        orbit3.animate([
+        {transform: 'translate(-50%, -50%) rotateY(60deg) rotateX(-52deg) rotateZ(-60deg)'},
+        {transform: 'translate(-50%, -50%) rotateY(60deg) rotateX(-52deg) rotateZ(300deg)'},
+    ], {
+        duration: 3000,
+        iterations: Infinity
+    });
+
+</script>
+</body>
+</html>

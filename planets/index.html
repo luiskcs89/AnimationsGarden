@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  background: #000000;
+}
+
+#planet1-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border: 1px #333333 solid;
+  border-radius: 100%;
+}
+
+.planet1 {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background-color: #e89a49;
+}
+
+#planet2-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border: 1px #333333 solid;
+  border-radius: 100%;
+}
+
+.planet2 {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  background-color: #44e4e4;
+}
+
+#planet3-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 450px;
+  border: 1px #333333 solid;
+  border-radius: 100%;
+}
+
+.planet3 {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  background-color: #cac207;
+}
+
+.ring {
+  border: #cac207 solid 2px;
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  margin: -12px;
+  padding: 10px;
+}
+
+#planet4-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border: 1px #333333 solid;
+  border-radius: 100%;
+}
+
+.planet4 {
+  position: absolute;
+  top: 210px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  background-color: #c9c4fd;
+}
+
+  </style>
+</head>
+<body>
+  <div id="planet1-orbit">
+    <div class="planet1"></div>
+  </div>
+
+  <div id="planet2-orbit">
+    <div class="planet2"></div>
+  </div>
+
+  <div id="planet3-orbit">
+    <div class="planet3">
+      <div class="ring"></div>
+    </div>
+  </div>
+
+  <div id="planet4-orbit">
+    <div class="planet4"></div>
+  </div>
+<script>
+
+  const planet1 = document.getElementById('planet1-orbit');
+  planet1.animate([
+    {transform: 'translate(-50%, -50%) rotate(0deg)'},
+    {transform: 'translate(-50%, -50%) rotate(360deg)'},
+  ], {
+    duration: 10000,
+    iterations: Infinity
+  });
+
+  const planet2 = document.getElementById('planet2-orbit');
+  planet2.animate([
+    {transform: 'translate(-50%, -50%) rotate(0deg)'},
+    {transform: 'translate(-50%, -50%) rotate(360deg)'},
+  ], {
+    duration: 15000,
+    iterations: Infinity
+  });
+
+  const planet3 = document.getElementById('planet3-orbit');
+  planet3.animate([
+    {transform: 'translate(-50%, -50%) rotate(0deg)'},
+    {transform: 'translate(-50%, -50%) rotate(360deg)'},
+  ], {
+    duration: 20000,
+    iterations: Infinity
+  });
+
+  const planet4 = document.getElementById('planet4-orbit');
+  planet4.animate([
+    {transform: 'translate(-50%, -50%) rotate(0deg)'},
+    {transform: 'translate(-50%, -50%) rotate(360deg)'},
+  ], {
+    duration: 25000,
+    iterations: Infinity
+  });
+
+</script>
+</body>
+</html>

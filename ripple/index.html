@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  background: #FDF1DB;
+}
+
+p {
+  font-family: Roboto;
+}
+
+button {
+  position: absolute;
+  overflow: hidden;
+  background: #A6CB12;
+  padding: 10px;
+  color: #ffffff;
+  font-family: Roboto;
+  font-weight: bold;
+  border: 0;
+  font-size: 40px;
+  border-radius: 10px;
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div {
+  border-radius: 50%;
+  background: #ffffff;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  opacity: 0.25;
+}
+  </style>
+</head>
+<body>
+  <p>Based on <a href="https://web-animations.github.io/web-animations-demos/#ripple/" target="_blank">Ripple</a> From Web Animations JS</p>
+  <button>Click me</button>
+<script>
+const waves = [];
+const duration = 450;
+
+function Wave(x, y) {
+  waves.push(this);
+  this.element = document.createElement('div');
+  this.element.style.left = 'calc(' + x + 'px - 150px)';
+  this.element.style.top = 'calc(' + y + 'px - 150px)';
+  this.element.setAttribute('touch-action', 'none');
+
+  document.getElementsByTagName('button')[0].appendChild(this.element);
+
+  this.scale = this.element.animate([
+    {transform: 'scale(0)'},
+    {transform: 'scale(1)'},
+  ], {
+    duration: duration,
+    easing: 'cubic-bezier(.22,.67,.52,.92)',
+    fill: 'forwards',
+  });
+}
+
+Wave.prototype = {
+  up: function() {
+    this.up = function() {};
+    this.opacity = this.element.animate([
+      {opacity: 0.25},
+      {opacity: 0},
+    ], {
+      duration: duration,
+      fill: 'forwards',
+    });
+    this.opacity.onfinish = function() {
+      this.element.remove();
+      waves.splice(waves.indexOf(this), 1);
+    }.bind(this);
+  }
+};
+
+document.getElementsByTagName('button')[0].addEventListener('mousedown', function(e) {
+    waves.forEach(function(wave) { wave.up(); });
+    const position = document.getElementsByTagName('button')[0].getBoundingClientRect();
+    new Wave(e.x - position.x, e.y - position.y);
+});
+
+document.getElementsByTagName('button')[0].addEventListener('mouseup', function(e) {
+    waves.forEach(function(wave) { wave.up(); });
+});
+
+document.getElementsByTagName('button')[0].addEventListener('mouseout', function(e) {
+    waves.forEach(function(wave) { wave.up(); });
+});
+
+</script>
+</body>
+</html>
