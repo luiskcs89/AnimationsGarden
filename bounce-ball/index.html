@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  background-color: #ffffff;
+}
+
+#ball {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    background-color: #ff9800;
+}
+
+#shadow {
+  width: 60px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #e4e6e6;
+  position: absolute;
+  top: 50%;
+  z-index: -1;
+  left: 50%;
+  filter: blur(1px);
+  transform: translate(-50%, 15px);
+}
+  </style>
+</head>
+<body>
+    <div id="ball"></div>
+    <div id="shadow"></div>
+<script>
+
+    const ball = document.getElementById('ball');
+    ball.animate([
+        {transform: 'translate(-50%, calc(-50% - 200px)) scaleY(1)', borderRadius: '100%'},
+        {offset: 0.75, transform: 'translate(-50%, calc(-50% - 10px)) scaleY(1)', borderRadius: '100%'},
+        {transform: 'translate(-50%, -50%) scaleY(0.5)', borderRadius: '50px 50px 25px 25px'}
+    ], {
+        duration: 750,
+        iterations: Infinity,
+        direction: "alternate",
+        ease: 'ease-in-out'
+    });
+
+    const shadow = document.getElementById('shadow');
+    shadow.animate([
+        {transform: 'translate(-50%, 15px) scaleX(0.1)'},
+        {transform: 'translate(-50%, 15px) scaleX(1)'}
+    ], {
+        duration: 750,
+        iterations: Infinity,
+        direction: "alternate",
+        ease: 'ease-in-out'
+    });
+</script>
+</body>
+</html>
