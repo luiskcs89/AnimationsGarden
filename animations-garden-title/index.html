@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+
+    @font-face {
+        font-family: 'Alley Garden';
+        src: local('Alley Garden'), url(./fonts/AlleyGarden-2Ogdw.ttf) format('truetype');
+    }
+
+    #title-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        text-align: center;
+    }
+
+    #title {
+        font-family: 'Alley Garden';
+        font-size: 2.5rem;
+    }
+
+    .letter {
+        opacity: 0;
+        display: inline-block;
+        border-bottom: 2px solid #1DA57A;
+        border-top: 2px solid #1DA57A;
+    }
+
+    #title-border-l {
+        font-family: 'Alley Garden';
+        font-size: 2.5rem;
+        display: inline-block;
+        color: #1DA57A;
+    }
+
+    #title-border-r {
+        font-family: 'Alley Garden';
+        font-size: 2.5rem;
+        display: inline-block;
+        color: #1DA57A;
+    }
+
+  </style>
+</head>
+<body>
+    <h1 id="title-wrapper"><span id="title-border-l">{</span><span id="title">Animations Garden</span><span id="title-border-r">}</span></h1>
+<script>
+
+const title = document.getElementById('title');
+
+let letters = title.textContent.split("");
+title.textContent = "";
+let middle = letters.filter(e => e !== " ").length / 2;
+letters.forEach((letter, i) => {
+    let span = document.createElement("span");
+    span.textContent = letter;
+    if (letter === ' ') {
+    span.style.whiteSpace = 'pre';
+    }
+    span.className = "letter";
+    title.append(span);
+
+    setTimeout(() => {
+    span.animate([
+        {transform: 'scale(0)', opacity: 0},
+        {transform: 'scale(1)', opacity: 1}
+    ], {
+        duration: 200,
+        easing: 'ease-in',
+        fill: 'forwards'
+    });
+    }, 500 + (Math.abs(i - middle) * 50));
+});
+
+setTimeout(() => {
+    const titleBorderL = document.getElementById('title-border-l');
+    titleBorderL.animate([
+        {transform: `translate(calc(-50% + ${title.offsetWidth/2}px))`},
+        {transform: 'translate(0)'}
+    ], {
+        duration: 500,
+        easing: 'ease-in',
+        fill: 'forwards'
+    });
+
+    const titleBorderR = document.getElementById('title-border-r');
+    titleBorderR.animate([
+        {transform: `translate(calc(50% - ${title.offsetWidth/2}px))`},
+        {transform: 'translate(0)'}
+    ], {
+        duration: 500,
+        easing: 'ease-in',
+        fill: 'forwards'
+    });
+}, 100);
+
+</script>
+</body>
+</html>

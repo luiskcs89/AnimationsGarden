@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
+  <style>
+body {
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.word {
+    position: absolute;
+    width: 100%;
+}
+
+.letter {
+    display: inline-block;
+    transform: translate(0, -100%) rotateX(-90deg);
+    transform-origin: center center 25px;
+}
+
+span {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.color-1 {
+    color: #FF8C42;
+}
+
+.color-2 {
+    color: #FFF275;
+}
+
+.color-3 {
+    color: #FF3C38;
+}
+
+.color-4 {
+    color: #6699CC;
+}
+
+.credit {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-family: Roboto;
+    margin: 0;
+}
+
+  </style>
+</head>
+<body>
+    <p class="credit">Based on <a href="https://codepen.io/alphardex/pen/WNNVJeZ" target="_blank">Rotating Text</a> by alphardex</p>
+    <div>
+        <span>Web animations are&nbsp;</span>
+        <span>
+            <span class="word color-1">awesome.</span>
+            <span class="word color-2">fun.</span>
+            <span class="word color-3">creative.</span>
+            <span class="word color-4">cool.</span>
+        </span>
+    </div>
+<script>
+
+let words = document.querySelectorAll(".word");
+words.forEach(word => {
+  let letters = word.textContent.split("");
+  word.textContent = "";
+  letters.forEach(letter => {
+    let span = document.createElement("span");
+    span.textContent = letter;
+    span.className = "letter";
+    word.append(span);
+  });
+});
+
+function animateWord(i) {
+    setTimeout(() => {
+            let next = i+1;
+            if (next >= words.length) {
+                next = 0;
+            }
+            animateWord(next);
+        }
+        , 4500
+    )
+    Array.from(words[i].children).forEach((letter, i) => {
+        setTimeout(() => {
+            letter.animate([
+                {transform: 'rotateX(-90deg)'},
+                {transform: 'rotateX(0deg)'},
+            ], {
+                duration: 500,
+                easing: 'ease-in',
+                fill: 'forwards'
+            });
+            setTimeout(() => {
+                letter.animate([
+                    {transform: 'rotateX(0deg)'},
+                    {transform: 'rotateX(90deg)'},
+                ], {
+                    duration: 500,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                })
+            }, 4500);
+        }
+        , 100 * i);
+    });
+}
+
+animateWord(0);
+
+</script>
+</body>
+</html>
